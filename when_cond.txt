@@ -1,0 +1,30 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	environment{
+	    name = "Pipeline"
+	}
+	
+	stages{
+		stage("when_equal_cond" ){
+			when{
+			    equals expected: "Pipeline", actual: "${name}"
+			}
+			steps{
+			    echo " It matches with name Pipeline"
+			}
+		}
+		stage("when_not_cond" ){
+			when{
+			    not{
+			        environment name: 'name', value: 'Pipelin'
+			    }
+			}
+			steps{
+			    echo " It not matches with name Pipeline"
+			}
+		}
+	}
+}

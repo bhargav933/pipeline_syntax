@@ -1,0 +1,12 @@
+pipeline{
+	agent any
+	
+	stages{
+		stage("String_para" ){
+			steps{
+			    //echo "$Tool and ${params.Tool} are both same."
+			    build(job:"downstream_job",parameters:[string(name:"Tool",value:"hi"),string(name:"name", value:"Jenkins Pipeline")])
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	parameters{
+	    text(name:'release_note',defaultValue:'',description:'Enter release note Details')
+	}
+	
+	stages{
+		stage("writefile" ){
+			steps{
+			    writeFile file:'release_note.txt',text:"$release_note"
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	
+	stages{
+	    
+		stage("if" ){
+		    
+			steps{
+			    ansiColor('xterm'){
+			    script{
+			        int i = "$BUILD_NUMBER"
+			        if (i%2 == 0){
+			            echo "Pipeline stage is EVEN"
+			        }
+			        else {
+			            echo "Pipeline stage is ODD"
+			        }
+			    }
+			    }
+			}
+		}
+		stage("for"){
+		    steps{
+		        ansiColor('vga'){
+		        script{
+		            for (int j=0;j<=5;j++){
+		                println(j)
+		            }
+		        }
+		    }
+		    }
+		}
+	}
+}

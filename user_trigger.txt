@@ -1,0 +1,30 @@
+/*
+    to use this functionality it must need to   
+    install "user build var" plug-in. This will use 
+    username or id.
+*/
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	
+	stages{
+		stage("user_trigger" ){
+			steps{
+			    wrap([$class: 'BuildUser']){
+			        script{
+			            user = "${BUILD_USER}"
+			            echo "${BUILD_USER} ${user}"
+			            if (user == "Admin"){
+			                echo "User is ADMMIN which has rights to edit config."
+			            }
+			            else{
+			                echo "Sorry, you Don't have rights to edit config."
+			            }
+			        }
+			    }
+			}
+		}
+	}
+}

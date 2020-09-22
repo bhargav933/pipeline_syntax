@@ -1,0 +1,40 @@
+pipeline{
+	agent any
+	environment{
+	    name = "Jenkins" // Global Level
+	    name1 = "Pipeline"
+	    name2= "of variable testing"
+	}
+	stages{
+		stage("User define"){
+		    environment{
+	            variable = "Pipeline" // Stage Level
+	        }
+			steps{
+			    echo "$name" 
+			    echo "$variable"
+			}
+		}
+		stage("Script Level"){
+		    environment{
+	            variable = "of" // Stage Level
+	        }
+		    steps{
+		        script{
+		            variable = "variable testing" //script level env defined
+		        }
+		        echo "${env.variable} $variable" // ${env.variable -- if you want use for the previous define variable}
+		    }
+		}
+		
+		stage("concatentaion"){
+		    steps{
+		        script{
+		            name3 = name + " " + name1 + " " + name2 //concatentaion- adding one or more variable ino one single one
+		        }
+		        echo "Task is for $name3"
+		    }
+		}
+		
+	}
+}

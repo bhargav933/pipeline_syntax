@@ -1,0 +1,53 @@
+/*
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	
+	stages{
+		stage("Build" ){
+			when{
+				changelog 'Build'
+			}
+			steps{
+				echo "Build stage Executed."
+			}
+		}
+		stage("Deploy" ){
+			when{
+				changelog 'Deploy'
+			}
+			steps{
+				echo "Deploy stage Executed"		
+			}
+		}
+	}
+}
+*/
+
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	
+	stages{
+		stage("test_file" ){
+			when{
+				changeset '*.py'
+			}
+			steps{
+				echo "Build stage Executed for python file."
+			}
+		}
+		stage("Txt_file" ){
+			when{
+				changeset '*.txt'
+			}
+			steps{
+				echo "Deploy stage Executed for change in txt file."		
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+pipeline{
+	agent any
+	
+	parameters{
+	    string(name:'Tool',defaultValue:'Hello',description:'')
+	    string(name:'name',defaultValue:'Jenkins',description:'')
+	    
+	}
+	stages{
+		stage("String_para" ){
+			steps{
+			    echo "$Tool"
+			    echo "$name"
+			}
+		}
+	}
+}

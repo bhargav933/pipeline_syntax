@@ -1,0 +1,15 @@
+pipeline{
+	agent any
+	triggers{
+	   //cron ('* * * * *') // triggers every minutes
+	   pollSCM ('* * * * *') // checked every minutes and triggers when there is change in repo
+	}
+	
+	stages{
+		stage("trigger" ){
+			steps{
+			    bat "echo %TIME%"
+			}
+		}
+	}
+}

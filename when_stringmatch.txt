@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+    stages{
+        stage("String_change"){
+            when{
+                expression{return readFile ('E:\\HCALCS_Project\\HCALCS\\test.py').contains('Hello') }
+            }
+            steps{
+                echo "Hello word is there in file."
+            }
+        }
+    }
+    
+}

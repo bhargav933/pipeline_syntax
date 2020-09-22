@@ -1,0 +1,42 @@
+pipeline{
+	agent any
+	
+	stages{
+		stage("build_Jobs" ){
+		    parallel{
+			    stage("userdefine"){
+			        steps{
+			         build 'userdefine_variable'
+			            
+			        }
+			    }
+			    stage("downstream"){
+			        steps{
+			            build 'downstream_job'
+			        }
+			    }
+		 }
+		    
+		}
+		stage("Time" ){
+		    parallel{
+			    stage("A"){
+			        steps{
+			         bat '''
+			            echo %Time%
+			            '''
+			            
+			        }
+			    }
+			    stage("B"){
+			        steps{
+			            bat '''
+			                echo 'Hi'
+			                '''
+			        }
+			    }
+		 }
+		    
+		}
+	}
+}

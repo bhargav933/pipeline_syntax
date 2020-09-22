@@ -1,0 +1,23 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	
+	stages{
+		stage("inputEx" ){
+			
+			    input{
+			        message "Do you need to continue"
+			        submitter "ADMIN"
+			        parameters{
+			            string(name:'username',description:'Please enter username')
+			        }
+			    }  
+			    steps{
+			    
+	                echo "${username} approved the build."		        
+			    }
+			}
+		}
+	}

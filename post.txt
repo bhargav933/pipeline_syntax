@@ -1,0 +1,37 @@
+pipeline{
+	agent any
+	options{
+	    timestamps()
+	}
+	stages{
+		stage("Run" ){
+			steps{
+			    echo "Hello world."
+			    bat  "python E:\\HCALCS_Project\\HCALCS\\test.py"
+			}
+		}
+	}
+	post{
+	    always{
+	        echo "This is always stage"
+	    }
+	    changed{
+	        echo "This is change stage where build result has been change."
+	    }
+	    regression{
+	        echo "This stage called when current status is failed/aborted/unstable and previous is success "
+	    }
+	    failure{
+	        echo "Every fail build this one execute"
+	    }
+	    success{
+	        echo "Every success build this one execute"
+	    }
+	    unstable{
+	        echo "Every unstable build this one execute"
+	    }
+	    cleanup{
+	        echo "this one clean up workspace/file after the build is finished." //this one always execute 
+	    }
+	}
+}

@@ -1,0 +1,38 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	environment{
+	    name= "Jenkins"
+	    name1= "Pipeline"
+	}
+	stages{
+		stage("All_of" ){
+			when{
+			    expression{
+			        return false
+			    }
+				allOf{
+				    
+				    equals expected: "Jenkins", actual:"$name"
+				    equals expected: "Pipeline", actual:"$name1"
+				}
+			}
+			steps{
+				echo "Build stage Executed for python file."
+			}
+		}
+		stage("Any_of" ){
+			when{
+				anyOf{
+				    equals expected: "Jenkins", actual:"$name"
+				    equals expected: "Pipeline", actual:"$name1"
+				}
+			}
+			steps{
+				echo "Deploy stage Executed for change in txt file."		
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	environment{
+	    name = "refs/tags/v01.02.03"
+	    /* this one consider as either 0 to 6 or -7 to -1
+	       J= 0 or -7
+	       e= 1 or -6
+	       n= 2 or -5
+	       k= 3 or -4
+	       i= 4 or -3
+	       n= 5 or -2
+	       s= 6 or -1 */
+	}
+	
+	stages{
+		stage("Trim" ){
+			steps{
+			    script{
+			        name1= name[10..18]//Jenkins
+			        name2= name[3..6]//kins
+			        name3= name[2..-1]//enkins
+			        name4= name[-7..-1]//Jenkins
+			        name5= name[-6..-2]//enkin
+			        echo "$name1\n$name2\n$name3\n$name4\n$name5"
+			    }
+			        
+			}
+		}
+	}
+}

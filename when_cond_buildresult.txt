@@ -1,0 +1,23 @@
+pipeline{
+	agent any
+
+	stages{
+		stage("A" ){
+			steps{
+			    echo "Hello, Its a pipeline When condition demo."
+			    bat "python E:\\HCALCS_Project\\HCALCS\\test.py"
+			    
+			}
+		}
+		stage("Build_result"){
+		    when {
+		        expression{
+		            currentBuild.getPreviousBuild().result == "SUCCESS"
+		        }
+		    }
+		    steps{
+		        echo "Executed because previous build was success."
+		    }
+		}
+	}
+}

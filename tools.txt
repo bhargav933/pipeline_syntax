@@ -1,0 +1,27 @@
+pipeline{
+	agent any
+	options{
+	 timestamps()
+	}
+	tools{
+	    maven "maven3.5.3"
+	}
+	
+	stages{
+		stage("mvn_1" ){
+			steps{
+			    echo "maven version"
+			    bat "mvn --version"
+			}
+		}
+		stage("mvn_2"){
+		    tools{
+		        maven "maven3.6.0"
+		    }
+		    steps{
+			    echo "maven version"
+			    bat "mvn --version"
+			}
+		}
+	}
+}
