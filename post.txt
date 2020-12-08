@@ -7,7 +7,7 @@ pipeline{
 		stage("Run" ){
 			steps{
 			    echo "Hello world."
-			    bat  "python E:\\HCALCS_Project\\HCALCS\\test.py"
+			    bat  "python E://Local//Downloads//Programs//Test1.py"
 			}
 		}
 	}
