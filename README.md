@@ -1,3 +1,3 @@
 # pipeline_syntax
 
-These all are basic syntacx of Jenkins pipeline script that used in many ways. 
+These all are basic syntaxs of Jenkins pipeline Declarative script that used in many ways. 
