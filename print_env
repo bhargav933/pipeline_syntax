@@ -1,0 +1,13 @@
+/* To check enviornment variable of the pipeline job */
+
+pipeline {
+    agent any
+
+    stages {
+        stage("Env Variables") {
+            steps {
+                sh "printenv"
+            }
+        }
+    }
+}
