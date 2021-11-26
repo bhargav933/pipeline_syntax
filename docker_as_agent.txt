@@ -1,0 +1,37 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    options { 
+        timestamps () 
+        disableConcurrentBuilds() //Prevent same build trigger simultaneously, If you build 3 time it will trigger one by one
+        timeout(time: 3, unit: 'HOURS') //it will set the timeout of the entire Jenkins build
+        
+    }
+    stages{
+    	stage('Checkout') {
+    		steps {
+    		    cleanWs()
+    			
+    		}
+	    }
+    	stage('Build') {
+    		agent{
+				// in this steps all the build steps executes inside the container. It will create a container in runtime and delete it once its execution is done. 
+    			docker {image "docker_image:Tag_number"
+    			        reuseNode true // run the container on the node specified at the top-level of the Pipeline
+    					args " -u root -v $WORKSPACE:/opt -w /opt"}}
+    		
+    		steps {
+    		    sh label: '', script: '''
+    		    cd /opt
+			    
+			    echo "Executes all the build steps here which run into the container"
+				
+				
+    			'''
+    			
+    		}
+    	}
+    }
+}
